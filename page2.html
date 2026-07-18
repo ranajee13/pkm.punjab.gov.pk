@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Police Character Certificate - Result</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: url('page2-assets/images/body-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Navbar width fixed to 100% */
+
+        .navbar-top {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            height: 65px;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .navbar-top img {
+            height: 50px;
+        }
+
+        .cert-sheet {
+            background-color: #fff;
+            background-image: url('page2-assets/images/watermark.png');
+            background-repeat: no-repeat;
+            background-position: center 100px;
+            background-size: 420px;
+            width: 95%;
+            max-width: 1300px;
+            margin: 20px auto 40px auto;
+            padding: 40px 50px;
+            border: 1px solid #ccc;
+            position: relative;
+            min-height: 1000px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            z-index: 1;
+        }
+
+        /* --- MOBILE VIEW FIXES --- */
+
+        @media screen and (max-width: 768px) {
+            .navbar-top {
+                padding: 0 15px;
+            }
+            .cert-sheet {
+                padding: 15px !important;
+                width: 100% !important;
+                margin: 0 !important;
+                border: none !important;
+                min-height: auto !important;
+                /* Page khatam hote hi footer aaye */
+                background-size: 280px !important;
+                background-position: center 300px !important;
+                display: block !important;
+            }
+            .top-header-wrapper {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: flex-start !important;
+                width: 100% !important;
+                margin-bottom: 20px !important;
+            }
+            .logo-on-sheet {
+                position: static !important;
+                width: 60px !important;
+            }
+            .photo-area {
+                position: static !important;
+                width: 90px !important;
+                text-align: right !important;
+            }
+            .photo-area img {
+                width: 80px !important;
+                height: 100px !important;
+            }
+            .header-title {
+                flex: 1 !important;
+                margin: 0 5px !important;
+                padding-top: 5px !important;
+                position: static !important;
+                text-align: center !important;
+            }
+            .header-title h1 {
+                font-size: 11px !important;
+                font-weight: bold !important;
+                line-height: 1.2 !important;
+                margin: 0 !important;
+            }
+            .header-title h2 {
+                font-size: 10px !important;
+                margin: 2px 0 !important;
+            }
+            .header-title h3 {
+                font-size: 9px !important;
+                margin: 2px 0 !important;
+                line-height: 1.1 !important;
+            }
+            .main-content-area {
+                margin-top: 10px !important;
+            }
+            .pkm-no {
+                font-size: 12px !important;
+                margin-bottom: 8px !important;
+            }
+            td,
+            th {
+                padding: 4px 3px !important;
+                font-size: 10px !important;
+            }
+            .date-text {
+                font-size: 7px !important;
+                white-space: normal !important;
+                margin-top: 4px;
+                display: block !important;
+            }
+            .gray-label {
+                width: 35% !important;
+            }
+            .footer-blur {
+                margin-top: 0 !important;
+            }
+            /* Mobile par page ke foran baad */
+        }
+
+        /* Original Desktop Positions */
+
+        .logo-on-sheet {
+            position: absolute;
+            left: 50px;
+            top: 50px;
+            width: 120px;
+        }
+
+        .photo-area {
+            position: absolute;
+            right: 50px;
+            top: 50px;
+            width: 190px;
+            text-align: right;
+        }
+
+        .photo-area img {
+            width: 150px;
+            height: 180px;
+            object-fit: cover;
+            border: 1px solid #000;
+            display: block;
+            margin-left: auto;
+            margin-bottom: 8px;
+        }
+
+        .date-text {
+            font-size: 12px;
+            font-weight: bold;
+            color: #333;
+            white-space: nowrap;
+            display: block;
+            position: relative;
+            right: 5px;
+        }
+
+        .header-title {
+            text-align: center;
+            margin-top: 25px;
+            margin-bottom: 130px;
+            background: transparent;
+        }
+
+        .header-title h1 {
+            font-size: 28px;
+            margin: 0;
+            font-weight: normal;
+            line-height: 1.4;
+        }
+
+        .header-title h2 {
+            font-size: 24px;
+            margin: 5px 0;
+            font-weight: normal;
+        }
+
+        .header-title h3 {
+            font-size: 22px;
+            margin: 5px 0;
+            font-weight: normal;
+        }
+
+        .main-content-area {
+            position: relative;
+            z-index: 2;
+            flex-grow: 1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0px;
+            background-color: transparent !important;
+        }
+
+        td,
+        th {
+            border: 0.5px solid #000;
+            padding: 10px;
+            font-size: 14px;
+            text-align: left;
+            background-color: transparent !important;
+        }
+
+        .gray-label {
+            background-color: rgba(252, 252, 252, 0.6) !important;
+            width: 22%;
+        }
+
+        .pkm-no {
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        .section-break-header {
+            text-align: center;
+            font-weight: bold;
+            padding: 12px;
+            border: 1px solid #000;
+            border-bottom: none;
+            font-size: 18px;
+            text-transform: uppercase;
+            margin-top: 20px;
+        }
+
+        .stay-table th {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            vertical-align: middle;
+        }
+
+        .stay-table td {
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 25px 10px;
+        }
+
+        .record-note {
+            font-size: 15px;
+            font-weight: bold;
+            margin: 30px 0 10px 0;
+        }
+
+        .record-table th {
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            background: rgba(249, 249, 249, 0.6) !important;
+        }
+
+        .record-table td {
+            text-align: center;
+            font-size: 14px;
+            padding: 12px;
+        }
+
+        .final-disclaimer {
+            font-size: 14px;
+            margin-top: 40px;
+            line-height: 1.7;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        /* Footer width fixed to 100% */
+
+        .footer-blur {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: #333;
+            text-align: center;
+            padding: 15px 0;
+            width: 100%;
+            font-size: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            margin-top: auto;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar-top">
+        <img src="page2-assets/images/logo-top.png">
+    </div>
+    <div class="cert-sheet">
+        <div class="top-header-wrapper">
+            <img src="page2-assets/images/logo-sheet.png" class="logo-on-sheet">
+            <div class="header-title">
+                <h1>Police Character Certificate</h1>
+                <h2>Police Khidmat Markaz</h2>
+                <h3>The District Police Officer, Rahim Yar Khan</h3>
+            </div>
+            <div class="photo-area">
+                <img src="page2-assets/images/pp.jpg">
+                <div class="date-text">Dated: 14/05/2026 10:26:03 AM</div>
+            </div>
+        </div>
+
+        <div class="main-content-area">
+            <div class="pkm-no">PKM No: RYK-14509194</div>
+            <table>
+                <tr>
+                    <td class="gray-label">Name</td>
+                    <td><strong>MUHAMMAD ASIF</strong></td>
+                </tr>
+                <tr>
+                    <td class="gray-label">Son of</td>
+                    <td>MUHAMMAD ALEEM</td>
+                </tr>
+                <tr>
+                    <td class="gray-label">CNIC</td>
+                    <td>31302-4422466-3</td>
+                </tr>
+                <tr>
+                    <td class="gray-label">Contact No</td>
+                    <td>0301-4035670</td>
+                </tr>
+                <tr>
+                    <td class="gray-label">Courier Address</td>
+                    <td>P/O CHAK NO 45/A CHAK NO 46/ ABS LIAQUATPUR RAHIMYARKHAN 0301-4035670</td>
+                </tr>
+                <tr>
+                    <td class="gray-label">Purpose</td>
+                    <td>Job</td>
+                </tr>
+            </table>
+            <table style="margin-top: 2px;">
+                <tr>
+                    <td class="gray-label">Form Submit Date</td>
+                    <td>13/05/2026 11:20:00 AM</td>
+                    <td class="gray-label">Date of Birth</td>
+                    <td>10/11/1987</td>
+                </tr>
+                <tr>
+                    <td class="gray-label">CNIC Issued Detail</td>
+                    <td>14/08/2019 Rahim Yar Khan</td>
+                    <td class="gray-label">Purpose</td>
+                    <td>This certificate is issued for visa processing.</td>
+                </tr>
+                <tr>
+                    <td class="gray-label">Passport No.</td>
+                    <td>GT1884661</td>
+                    <td class="gray-label">Passport Issued Detail</td>
+                    <td>11/11/2022 RAHIMYARKHAN</td>
+                </tr>
+            </table>
+            <div class="section-break-header">PLACE & PERIOD OF STAY</div>
+            <table class="stay-table">
+                <thead>
+                    <tr>
+                        <th rowspan="2" style="width: 45%;">Address</th>
+                        <th rowspan="2" style="width: 25%;">Police Station</th>
+                        <th colspan="2">Stay Period</th>
+                    </tr>
+                    <tr style="font-size: 15px;">
+                        <th style="width: 15%;">From</th>
+                        <th style="width: 15%;">To</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: left;">Permanent:P/O CHAK NO 45/A CHAK NO 46/ ABS LIAQUATPUR RAHIMYARKHAN 0301-4035670</td>
+                        <td>Saddar Liaqatpur</td>
+                        <td>Since Birth</td>
+                        <td>To Date</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="record-note">As per available record of Police Station(s), the applicant has:</div>
+            • NO Record Found till date <br> • NO Criminal Record Found till date
+        </div>
+        <div class="final-disclaimer">
+            This Character Certificate document is genuine and issued to <strong>"MUHAMMAD ASIF" </strong> S/O <strong>"MUHAMMAD ALEEM"</strong> by Punjab Police, Pakistan. It will expire on <strong>"09/11/2026".This is electronic verification of the document cannot be challenged in The Court of Law. For detailed verification of the certificate please contact relevant district's Police Khidmat Markaz Incharge.</strong>.
+        </div>
+    </div>
+    </div>
+    <div class="footer-blur">
+        © Copyright 2026 PITB
+    </div>
+</body>
+
+</html>
