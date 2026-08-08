@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html> 
 <html class="transition-navbar-scroll top-navbar-xlarge bottom-footer" lang="en"> 
 <head> 
